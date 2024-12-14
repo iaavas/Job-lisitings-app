@@ -36,23 +36,22 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden sm:flex sm:items-center sm:space-x-4">
             <Link
               href="/"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium"
             >
               Home
             </Link>
             <Link
               href="/jobs"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium"
             >
               Jobs
             </Link>
             <Link
               href="/favorites"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
               Favorites
               {favoriteJobs.length > 0 && (
@@ -63,7 +62,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               onClick={toggleMobileMenu}
@@ -111,19 +109,19 @@ const Navbar: React.FC = () => {
           <div className="pt-2 pb-3 space-y-1">
             <Link
               href="/"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-lg font-medium "
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-xl font-medium "
             >
               Home
             </Link>
             <Link
               href="/jobs"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-lg font-medium"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-xl font-medium"
             >
               Jobs
             </Link>
             <Link
               href="/favorites"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900  px-3 py-2 rounded-md text-lg font-medium flex items-center"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900  px-3 py-2 rounded-md text-xl font-medium flex items-center"
             >
               Favorites
               {favoriteJobs.length > 0 && (

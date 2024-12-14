@@ -16,7 +16,7 @@ The goal of this application is to provide a platform where users can:
 - **Frontend**: Next.js with TypeScript, Zustand for state management
 - **Backend**: Next.js API routes
 - **Database**: MongoDB
-- **Styling**: CSS/SCSS or Tailwind CSS (optional based on your implementation)
+- **Styling**: Tailwind CSS
 
 ## Setup and Installation
 
@@ -37,7 +37,6 @@ The goal of this application is to provide a platform where users can:
 
    ```env
    MONGODB_URI=<your-mongodb-connection-string>
-   NEXT_PUBLIC_API_URL=<your-api-url>
    ```
 
 4. Start the development server:

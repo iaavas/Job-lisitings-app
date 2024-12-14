@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-// Zod Schema for Form Validation
 const ApplicationSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email format"),
@@ -22,6 +22,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [resumeFileName, setResumeFileName] = useState<string | null>(null);
+  const resumeInputRef = useRef<HTMLInputElement | null>(null);
 
   const {
     register,
@@ -52,10 +53,9 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
       formData.append("coverLetter", data.coverLetter);
     }
 
-    // Add resume file if selected
-    const resumeInput = document.getElementById("resume") as HTMLInputElement;
-    if (resumeInput?.files && resumeInput.files.length > 0) {
-      formData.append("resume", resumeInput.files[0]);
+    const resumeFile = resumeInputRef.current?.files?.[0];
+    if (resumeFile) {
+      formData.append("resume", resumeFile);
     }
 
     try {
@@ -175,6 +175,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
             <input
               type="file"
               id="resume"
+              ref={resumeInputRef}
               accept=".pdf,.doc,.docx"
               onChange={handleResumeChange}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
