@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) => {
   await connectMongoDB();
 
   try {
-    const jobId = context.params.id;
+    const { id: jobId } = await context.params;
 
     console.log("Fetching job with ID:", jobId);
 
@@ -35,12 +35,12 @@ export const GET = async (
 
 export const DELETE = async (
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) => {
   await connectMongoDB();
 
   try {
-    const jobId = context.params.id;
+    const { id: jobId } = await context.params;
 
     console.log("Deleting job with ID:", jobId);
 
@@ -69,12 +69,12 @@ export const DELETE = async (
 
 export const PUT = async (
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) => {
   await connectMongoDB();
 
   try {
-    const jobId = context.params.id;
+    const { id: jobId } = await context.params;
     const updatedData = await req.json();
 
     console.log("Updating job with ID:", jobId);

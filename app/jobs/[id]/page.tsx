@@ -1,12 +1,12 @@
 import JobDetails from "@/app/components/JobDetails";
 import Navbar from "@/app/components/Navbar";
 
-interface Params {
-  id: string;
-}
-
-export default async function Page({ params }: { params: Params }) {
-  const { id } = params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
   return (
     <>

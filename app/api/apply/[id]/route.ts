@@ -1,14 +1,17 @@
 import connectMongoDB from "@/app/lib/mongodb";
 import Application from "@/app/models/application.model";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 
-export async function POST(req: Request, context: { params: { id: string } }) {
+export async function POST(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
     await connectMongoDB();
 
-    const jobId = context.params.id;
+    const { id: jobId } = await context.params;
 
     if (!jobId) {
       return NextResponse.json(
@@ -33,7 +36,6 @@ export async function POST(req: Request, context: { params: { id: string } }) {
     let resumePath: string | undefined;
 
     if (resume) {
-      console.log(resume);
       const buffer = await resume.arrayBuffer();
       const fileName = `${Date.now()}_${resume.name}`;
       const filePath = path.join(process.cwd(), "public/uploads", fileName);
