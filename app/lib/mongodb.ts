@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env" });
 
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log(MONGODB_URI);

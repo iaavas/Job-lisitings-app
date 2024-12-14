@@ -2,16 +2,8 @@
 import { useState, useEffect } from "react";
 import useFavoriteJobsStore from "@/app/stores/favoriteJobsStore";
 import JobApplicationForm from "@/app/components/JobApplicationForm";
-
-interface Job {
-  _id: string;
-  title: string;
-  company: string;
-  location: string;
-  description: string;
-  requirements?: string[];
-  salary?: number;
-}
+import Loader from "./Loader";
+import Job from "@/app/types/job.type";
 
 interface JobDetailsParams {
   id: string;
@@ -43,11 +35,7 @@ const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
   }, [id]);
 
   if (!job) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="spinner border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   const toggleFavorite = () => {

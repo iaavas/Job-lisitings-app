@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-
-interface Job {
-  _id: string;
-  title: string;
-  company: string;
-}
+import Job from "../types/job.type";
 
 interface FavoriteJobsState {
   favoriteJobs: Job[];
@@ -17,7 +12,7 @@ interface FavoriteJobsState {
 const useFavoriteJobsStore = create<FavoriteJobsState>()(
   persist(
     (set, get) => ({
-      favoriteJobs: [],
+      favoriteJobs: [] as Job[],
       addFavoriteJob: (job) =>
         set((state) => ({
           favoriteJobs: [...state.favoriteJobs, job],

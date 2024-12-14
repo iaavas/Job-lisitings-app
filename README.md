@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Listings Application
 
-## Getting Started
+This is a job listings application built using **Next.js**, **TypeScript**, **MongoDB**, and **Zustand**. The application allows users to browse job listings, view detailed job information, and mock apply for jobs. It also includes features like custom API routes, database integration, state management, pagination, form handling, and static site generation (SSG).
 
-First, run the development server:
+## Objective
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The goal of this application is to provide a platform where users can:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Browse and search for job listings.
+- View detailed information about each job.
+- Mock apply for jobs via a form.
+- Mark jobs as favourites and view them in a separate section.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend**: Next.js with TypeScript, Zustand for state management
+- **Backend**: Next.js API routes
+- **Database**: MongoDB
+- **Styling**: CSS/SCSS or Tailwind CSS (optional based on your implementation)
 
-## Learn More
+## Setup and Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone <repository-url>
+   cd job-listings-app
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Install dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Set up the environment variables in a `.env.local` file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```env
+   MONGODB_URI=<your-mongodb-connection-string>
+   NEXT_PUBLIC_API_URL=<your-api-url>
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the application in your browser:
+
+   ```bash
+   http://localhost:3000
+   ```

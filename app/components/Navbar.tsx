@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -111,19 +111,19 @@ const Navbar: React.FC = () => {
           <div className="pt-2 pb-3 space-y-1">
             <Link
               href="/"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-lg font-medium "
             >
               Home
             </Link>
             <Link
               href="/jobs"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-lg font-medium"
             >
               Jobs
             </Link>
             <Link
               href="/favorites"
-              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900  px-3 py-2 rounded-md text-base font-medium flex items-center"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900  px-3 py-2 rounded-md text-lg font-medium flex items-center"
             >
               Favorites
               {favoriteJobs.length > 0 && (

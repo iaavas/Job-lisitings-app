@@ -11,7 +11,9 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@types/mongoose": "^5.11.96",
+    "dotenv": "^16.4.7",
     "formidable": "^3.5.2",
+    "lucide-react": "^0.468.0",
     "mongoose": "^8.8.4",
     "next": "15.1.0",
     "react": "^19.0.0",

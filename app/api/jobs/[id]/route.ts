@@ -11,24 +11,94 @@ export const GET = async (
   try {
     const jobId = context.params.id;
 
-    console.log("aaavash dai job id is", jobId);
+    console.log("Fetching job with ID:", jobId);
 
     if (!jobId) {
-      return NextResponse.json(
-        { message: "Invalid page or limit parameters" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
     }
 
     const job = await Job.findById(jobId);
 
-    return NextResponse.json({
-      job,
-    });
+    if (!job) {
+      return NextResponse.json({ message: "Job not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ job });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       { message: "Error fetching job", error },
+      { status: 500 }
+    );
+  }
+};
+
+export const DELETE = async (
+  req: Request,
+  context: { params: { id: string } }
+) => {
+  await connectMongoDB();
+
+  try {
+    const jobId = context.params.id;
+
+    console.log("Deleting job with ID:", jobId);
+
+    if (!jobId) {
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
+    }
+
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    if (!deletedJob) {
+      return NextResponse.json({ message: "Job not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      message: "Job deleted successfully",
+      deletedJob,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error deleting job", error },
+      { status: 500 }
+    );
+  }
+};
+
+export const PUT = async (
+  req: Request,
+  context: { params: { id: string } }
+) => {
+  await connectMongoDB();
+
+  try {
+    const jobId = context.params.id;
+    const updatedData = await req.json();
+
+    console.log("Updating job with ID:", jobId);
+
+    if (!jobId) {
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
+    }
+
+    const updatedJob = await Job.findByIdAndUpdate(jobId, updatedData, {
+      new: true,
+    });
+
+    if (!updatedJob) {
+      return NextResponse.json({ message: "Job not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      message: "Job updated successfully",
+      updatedJob,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error updating job", error },
       { status: 500 }
     );
   }
