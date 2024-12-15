@@ -1,5 +1,4 @@
 import JobDetails from "@/app/components/JobDetails";
-import Navbar from "@/app/components/Navbar";
 
 export default async function Page({
   params,
@@ -10,8 +9,7 @@ export default async function Page({
 
   return (
     <>
-      <Navbar />
-      <div className="p-4 bg-gray-50 rounded-lg">
+      <div className="p-4 bg-gray-50/0 rounded-lg">
         <JobDetails id={id} />
       </div>
     </>

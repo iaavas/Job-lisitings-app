@@ -85,7 +85,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
   };
 
   return (
-    <div className="bg-white  rounded-lg p-6 max-w-md mx-auto">
+    <div className="bg-white  rounded-lg d  mx-auto ">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         Job Application
       </h2>

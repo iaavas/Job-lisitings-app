@@ -1,11 +1,9 @@
 import JobList from "@/app/components/JobList";
-import Navbar from "@/app/components/Navbar";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <div className="p-4 bg-gray-50 rounded-lg min-h-screen">
+      <div className="p-4 bg-gray-50/0 rounded-lg min-h-screen">
         <JobList />
       </div>
     </>

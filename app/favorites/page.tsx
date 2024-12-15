@@ -3,7 +3,7 @@ import React from "react";
 
 import useFavoriteJobsStore from "@/app/stores/favoriteJobsStore";
 import Job from "@/app/types/job.type";
-import Navbar from "../components/Navbar";
+
 import JobCard from "../components/JobCard";
 
 const FavoritesPage = () => {
@@ -11,9 +11,7 @@ const FavoritesPage = () => {
 
   return (
     <>
-      <Navbar />
-
-      <div className="container mx-auto px-4 py-8  bg-gray-50 h-screen">
+      <div className="container mx-auto px-4 py-8  bg-gray-50/0 h-screen">
         <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
           Favorite Jobs
         </h1>

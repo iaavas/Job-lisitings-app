@@ -50,6 +50,12 @@ const Navbar: React.FC = () => {
               Jobs
             </Link>
             <Link
+              href="/admin"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium"
+            >
+              Admin
+            </Link>
+            <Link
               href="/favorites"
               className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
@@ -103,7 +109,6 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
@@ -118,6 +123,12 @@ const Navbar: React.FC = () => {
               className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-xl font-medium"
             >
               Jobs
+            </Link>
+            <Link
+              href="/admin"
+              className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-xl font-medium"
+            >
+              Admin
             </Link>
             <Link
               href="/favorites"

@@ -55,7 +55,7 @@ const JobList: React.FC = () => {
         <button
           onClick={() => setPage((prev) => Math.max(1, prev - 1))}
           disabled={page === 1}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 hover:bg-blue-800"
         >
           Prev
         </button>
@@ -65,7 +65,7 @@ const JobList: React.FC = () => {
         <button
           onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
           disabled={page === totalPages}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 hover:bg-blue-800"
         >
           Next
         </button>

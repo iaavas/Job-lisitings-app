@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import Navbar from "./components/Navbar";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main className=" bg-white flex flex-col py-16 justify-center px-4 lg:px-8">
-        <section className="text-center lg:text-left bg-white flex justify-between items-center gap-16">
+        <section className="text-center lg:text-left bg-white flex sm:flex-row flex-col-reverse justify-between items-center gap-16">
           <div>
             <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
               <span className="block xl:inline">Find Your Dream</span>{" "}
