@@ -33,7 +33,7 @@ export async function POST(
       );
     }
 
-    let resumePath: string | undefined;
+    let resumePath = "";
 
     if (resume) {
       const buffer = await resume.arrayBuffer();
