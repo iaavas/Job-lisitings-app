@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { MapPin, Briefcase, Heart } from "lucide-react";
+import { MapPin, Briefcase, BookmarkIcon } from "lucide-react";
 import Job from "../types/job.type";
 import useFavoriteJobsStore from "../stores/favoriteJobsStore";
 
@@ -53,7 +53,7 @@ const JobCard = ({ job }: { job: Job }) => {
               }
             `}
           >
-            <Heart
+            <BookmarkIcon
               className={`w-5 h-5 transition-transform duration-300 ${
                 isFavorite(job._id) ? "fill-current" : "hover:scale-110"
               }`}

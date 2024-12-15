@@ -1,35 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Job Board",
-  description: "Find your favourite jobs here.",
+  title: "JobBoard",
+  description: "Find your next great job",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} pt-[var(--navbar-height)] min-h-screen`}
+        style={
+          {
+            "--navbar-height": "4rem",
+          } as React.CSSProperties
+        }
       >
         <Navbar />
-        {children}
+        <main className="container mx-auto px-4 py-3">{children}</main>
       </body>
     </html>
   );
