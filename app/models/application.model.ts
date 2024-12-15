@@ -6,7 +6,7 @@ const ApplicationSchema = new Schema(
     fullName: { type: String, required: true },
     email: { type: String, required: true },
     coverLetter: { type: String, required: true },
-    resumePath: { type: String, required: true },
+    resumePath: { type: String, required: false },
     submittedAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
