@@ -9,6 +9,25 @@ interface JobDetailsParams {
   id: string;
 }
 
+const Modal: React.FC<{ children: React.ReactNode; onClose: () => void }> = ({
+  children,
+  onClose,
+}) => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+        >
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
   const [job, setJob] = useState<Job | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
@@ -114,18 +133,16 @@ const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
 
           <div className="mt-6">
             <button
-              onClick={() => setShowApplicationForm(!showApplicationForm)}
+              onClick={() => setShowApplicationForm(true)}
               className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
             >
-              {showApplicationForm
-                ? "Close Application Form"
-                : "Apply for this Job"}
+              Apply for this Job
             </button>
 
             {showApplicationForm && (
-              <div className="mt-6">
+              <Modal onClose={() => setShowApplicationForm(false)}>
                 <JobApplicationForm jobId={job._id} />
-              </div>
+              </Modal>
             )}
           </div>
         </div>

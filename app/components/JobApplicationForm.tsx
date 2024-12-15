@@ -8,7 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const ApplicationSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email format"),
-  coverLetter: z.string().optional(),
+  coverLetter: z
+    .string()
+    .min(10, "Write cover letter of at least 10 characters"),
 });
 
 type ApplicationFormData = z.infer<typeof ApplicationSchema>;
@@ -83,7 +85,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+    <div className="bg-white  rounded-lg p-6 max-w-md mx-auto">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         Job Application
       </h2>
@@ -208,18 +210,28 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobId }) => {
             className="block text-gray-700 font-medium mb-2"
           >
             Cover Letter
-            <span className="text-gray-500 ml-1">(Optional)</span>
+            <span className="text-red-500 ml-1">*</span>
           </label>
           <textarea
             id="coverLetter"
             {...register("coverLetter")}
             rows={4}
-            className="
+            className={`
               w-full px-3 py-2 border border-gray-300 rounded-md 
               focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
-            "
-            placeholder="Write your cover letter (optional)"
+              ${
+                errors.coverLetter
+                  ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                  : "border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              }
+            `}
+            placeholder="Write your cover letter "
           ></textarea>
+          {errors.coverLetter && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.coverLetter.message}
+            </p>
+          )}
         </div>
 
         <button
