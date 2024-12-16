@@ -1,7 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Loader from "./Loader";
+import React from "react";
 import JobCard from "./JobCard";
+import Pagination from "./Pagination";
 
 interface Job {
   _id: string;
@@ -11,36 +10,15 @@ interface Job {
   description: string;
 }
 
-const JobList: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+interface JobListProps {
+  jobs: Job[];
+  currentPage: number;
+  totalPages: number;
+}
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`/api/jobs?page=${page}&limit=6`);
-        const data = await response.json();
-        setJobs(data.jobs);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Failed to fetch jobs", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [page]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
+const JobList: React.FC<JobListProps> = ({ jobs, currentPage, totalPages }) => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto sm:px-4 px-1 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
         Job Listings
       </h1>
@@ -50,26 +28,7 @@ const JobList: React.FC = () => {
           <JobCard job={job} key={job._id} />
         ))}
       </div>
-
-      <div className="flex justify-center mt-8 space-x-4">
-        <button
-          onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-          disabled={page === 1}
-          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 hover:bg-blue-800"
-        >
-          Prev
-        </button>
-        <span className="self-center text-gray-700">
-          Page {page} of {totalPages}
-        </span>
-        <button
-          onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-          disabled={page === totalPages}
-          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300 hover:bg-blue-800"
-        >
-          Next
-        </button>
-      </div>
+      <Pagination currentPage={currentPage} totalPages={totalPages} />
     </div>
   );
 };

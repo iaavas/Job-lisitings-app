@@ -11,8 +11,6 @@ export const GET = async (
   try {
     const { id: jobId } = await context.params;
 
-    console.log("Fetching job with ID:", jobId);
-
     if (!jobId) {
       return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
     }
@@ -41,8 +39,6 @@ export const DELETE = async (
 
   try {
     const { id: jobId } = await context.params;
-
-    console.log("Deleting job with ID:", jobId);
 
     if (!jobId) {
       return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
@@ -76,8 +72,6 @@ export const PUT = async (
   try {
     const { id: jobId } = await context.params;
     const updatedData = await req.json();
-
-    console.log("Updating job with ID:", jobId);
 
     if (!jobId) {
       return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });

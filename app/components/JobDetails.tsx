@@ -7,7 +7,7 @@ import Job from "@/app/types/job.type";
 import { BookmarkIcon, MapPinIcon, BriefcaseIcon } from "lucide-react";
 
 interface JobDetailsParams {
-  id: string;
+  job: Job;
 }
 
 const Modal: React.FC<{ children: React.ReactNode; onClose: () => void }> = ({
@@ -49,30 +49,15 @@ const Modal: React.FC<{ children: React.ReactNode; onClose: () => void }> = ({
   );
 };
 
-const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
-  const [job, setJob] = useState<Job | null>(null);
+const JobDetails: React.FC<JobDetailsParams> = ({ job }) => {
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const { addFavoriteJob, removeFavoriteJob, isFavorite } =
     useFavoriteJobsStore();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const fetchJobDetails = async () => {
-      try {
-        const response = await fetch(`/api/jobs/${id}`);
-        const data = await response.json();
-
-        if (response.ok) {
-          setJob(data.job);
-        } else {
-          console.error("Failed to fetch job details:", data.message);
-        }
-      } catch (error) {
-        console.error("Failed to fetch job details", error);
-      }
-    };
-
-    if (id) fetchJobDetails();
-  }, [id]);
+    setIsClient(true);
+  }, []);
 
   if (!job) {
     return <Loader />;
@@ -110,7 +95,7 @@ const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
             <button
               onClick={toggleFavorite}
               className={`w-12 h-12 rounded-full flex items-center justify-center shadow-md transition-all duration-300 ${
-                isFavorite(job._id)
+                isClient && isFavorite(job._id)
                   ? "bg-red-50 text-red-600 hover:bg-red-100"
                   : "bg-gray-50 text-gray-500 hover:bg-gray-100"
               }`}
@@ -118,7 +103,7 @@ const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
             >
               <BookmarkIcon
                 className={`h-7 w-7 ${
-                  isFavorite(job._id) ? "fill-current" : ""
+                  isClient && isFavorite(job._id) ? "fill-current" : ""
                 }`}
               />
             </button>
@@ -142,20 +127,6 @@ const JobDetails: React.FC<JobDetailsParams> = ({ id }) => {
           {job.requirements && job.requirements.length > 0 && (
             <div className="mb-6 bg-gray-50 p-5 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mr-3 text-blue-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
                 Requirements
               </h3>
               <ul className="list-disc list-inside text-gray-700 space-y-3">
