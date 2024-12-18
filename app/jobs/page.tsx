@@ -5,7 +5,7 @@ async function fetchJobs(page: number = 1, limit: number = 6) {
   try {
     const response = await fetch(
       `${API_URL}/api/jobs?page=${page}&limit=${limit}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 60 } }
     );
 
     if (!response.ok) {
